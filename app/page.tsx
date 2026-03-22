@@ -1,6 +1,4 @@
-// src/app/page.tsx
-
-import CryptoList from './CryptoList'; // புதுசா உருவாக்குன ஃபைலை உள்ளே கொண்டு வரோம்
+import CryptoList from './CryptoList';
 
 interface Coin {
   id: string;
@@ -13,7 +11,6 @@ interface Coin {
 
 export default async function Home() {
   
-  // 50 காயின்களின் டேட்டாவை சர்வரிலேயே எடுக்குறோம் (Server-Side Fetching)
   const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false', {
     next: { revalidate: 60 } 
   });
@@ -26,7 +23,6 @@ export default async function Home() {
         Live Crypto Tracker 🚀
       </h1>
       
-      {/* நாம் எடுத்த டேட்டாவை Client Component-க்கு Props ஆக அனுப்புகிறோம்! */}
       <CryptoList initialCoins={coins} />
       
     </main>

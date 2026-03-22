@@ -1,6 +1,4 @@
-// src/app/CryptoList.tsx
-
-"use client"; // இதுதான் Next.js-க்கு இது Client Component என்று சொல்லும்!
+"use client";
 import { useState } from 'react';
 
 // TypeScript Rules
@@ -14,10 +12,9 @@ interface Coin {
 }
 
 export default function CryptoList({ initialCoins }: { initialCoins: Coin[] }) {
-  // யூசர் டைப் செய்யும் வார்த்தையை சேவ் பண்ண State
+
   const [search, setSearch] = useState('');
 
-  // யூசர் டைப் செய்வதை வைத்து காயின்களை ஃபில்டர் (Filter) செய்கிறோம்
   const filteredCoins = initialCoins.filter(coin =>
     coin.name.toLowerCase().includes(search.toLowerCase()) ||
     coin.symbol.toLowerCase().includes(search.toLowerCase())
@@ -26,7 +23,6 @@ export default function CryptoList({ initialCoins }: { initialCoins: Coin[] }) {
   return (
     <div className="max-w-3xl mx-auto">
       
-      {/* Search Bar டிசைன் */}
       <input
         type="text"
         placeholder="Search coins (e.g., Bitcoin, ETH)..."
@@ -34,7 +30,6 @@ export default function CryptoList({ initialCoins }: { initialCoins: Coin[] }) {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* காயின்கள் லிஸ்ட் */}
       <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
         {filteredCoins.length > 0 ? (
           filteredCoins.map((coin) => (
@@ -55,7 +50,7 @@ export default function CryptoList({ initialCoins }: { initialCoins: Coin[] }) {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-400 py-4">No coins found! 😢</p> // தேடும் காயின் இல்லை என்றால் இந்த மெசேஜ் வரும்
+          <p className="text-center text-gray-400 py-4">No coins found! 😢</p>
         )}
       </div>
     </div>
